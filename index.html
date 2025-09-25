@@ -1,86 +1,267 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nikhil Ram Jadhav — IT & DevOps Portfolio</title>
-  <meta name="description" content="Portfolio of Nikhil Ram Jadhav — IT Support, System Administration, Cloud & DevOps" />
-  <style>
-    body {font-family: Arial, sans-serif; margin: 0; background: #0f1724; color: #e6eef8;}
-    a {color: #22c55e; text-decoration: none;}
-    header, footer {max-width: 1000px; margin: auto; padding: 20px;}
-    header {display: flex; justify-content: space-between; align-items: center;}
-    nav a {margin-left: 15px; color: #94a3b8;}
-    .container {max-width: 1000px; margin: auto; padding: 20px;}
-    .section {background: #0b1220; padding: 20px; border-radius: 10px; margin-bottom: 20px;}
-    .skills span, .soft-skills span {display: inline-block; background: rgba(255,255,255,0.05); padding: 6px 10px; margin: 5px; border-radius: 5px; font-size: 14px; color: #94a3b8;}
-    h1, h2, h3, h4 {margin-top: 0;}
-    footer {text-align: center; font-size: 14px; color: #94a3b8;}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nikhil Ram Jadhav — IT & SysAdmin Portfolio</title>
+<meta name="description" content="Portfolio of Nikhil Ram Jadhav — IT Support, System Administration, Cloud & DevOps">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after {box-sizing: border-box; margin:0; padding:0;}
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0f1724;
+    color: #e6eef8;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    transition: background 0.3s, color 0.3s;
+  }
+  a {text-decoration: none; color: inherit;}
+  h1,h2,h3,h4 {margin:0;}
+  
+  /* Dark/Light Mode */
+  body.light-mode {background:#f5f5f5; color:#0f1724;}
+  body.light-mode .hero {background:#e0f7fa;}
+  body.light-mode section {background:#ffffff; color:#0f1724; box-shadow:0 6px 20px rgba(0,0,0,0.1);}
+  body.light-mode .skills span, .soft-skills span {background: #d4f5e2; color:#0f1724;}
+  body.light-mode .project-card {background:#f0f0f0;}
+  body.light-mode nav a {color:#0f1724;}
+  
+  /* Navbar */
+  header {
+    position: sticky; top:0;
+    background: #0f1724;
+    padding: 20px 40px;
+    display:flex; justify-content: space-between; align-items: center;
+    border-bottom:1px solid #1e293b;
+    z-index:1000;
+  }
+  nav a {margin-left:25px; font-weight:500; color:#94a3b8; transition:color 0.3s;}
+  nav a:hover {color:#22c55e;}
+  .theme-toggle {
+    cursor:pointer;
+    border:2px solid #22c55e;
+    padding:6px 10px;
+    border-radius:6px;
+    color:#22c55e;
+    font-weight:500;
+    transition:all 0.3s;
+  }
+  .theme-toggle:hover {background:#22c55e; color:#0f1724;}
+
+  /* Hero Section */
+  .hero {
+    height: 100vh; display:flex; flex-direction: column; justify-content:center; align-items:center;
+    text-align:center; padding:0 20px;
+    background: linear-gradient(135deg, #0f1724, #1e293b);
+    transition: background 0.3s;
+  }
+  .hero h1 {font-size:3rem; font-weight:700; margin-bottom:15px;}
+  .hero p {font-size:1.2rem; color:#94a3b8; margin-bottom:25px; max-width:600px;}
+  .hero .btn {padding:12px 25px; border:2px solid #22c55e; color:#22c55e; border-radius:6px; font-weight:500; margin:5px; transition:all 0.3s;}
+  .hero .btn:hover {background:#22c55e; color:#0f1724;}
+
+  /* Sections */
+  .container {max-width:1100px; margin:50px auto; padding:0 20px;}
+  section {margin-bottom:60px; padding:40px 30px; background:#0b1220; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.4); transition:transform 0.3s, box-shadow 0.3s;}
+  section:hover {transform:translateY(-3px); box-shadow:0 10px 25px rgba(0,0,0,0.5);}
+  h2 {font-size:2rem; margin-bottom:25px; color:#f1f5f9; border-bottom:2px solid #1e293b; padding-bottom:8px;}
+  h3 {font-size:1.3rem; margin-bottom:12px; color:#e6eef8;}
+  p {font-size:1rem; color:#cbd5e1; margin-bottom:15px;}
+  ul {margin-left:20px; margin-bottom:15px;}
+  ul li {margin-bottom:8px;}
+
+  /* Skills */
+  .skills span, .soft-skills span {display:inline-block; background: rgba(34,197,94,0.1); padding:8px 14px; margin:6px 6px 6px 0; border-radius:6px; font-size:14px; font-weight:500; color:#94a3b8; transition: all 0.3s;}
+  .skills span:hover, .soft-skills span:hover {background:#22c55e; color:#0f1724;}
+
+  /* Animated Skill Bars */
+  .skill-bar {margin-bottom:15px;}
+  .skill-bar .skill-name {margin-bottom:5px; font-weight:500;}
+  .skill-bar .bar {width:100%; height:12px; background:#1e293b; border-radius:6px; overflow:hidden;}
+  .skill-bar .fill {height:100%; width:0; background:#22c55e; border-radius:6px; transition: width 2s;}
+
+  /* Projects */
+  .project-grid {display:grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap:20px;}
+  .project-card {background:#1e293b; padding:20px; border-radius:10px; cursor:pointer; transition:transform 0.3s, box-shadow 0.3s;}
+  .project-card:hover {transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.5);}
+  .project-card h4 {margin-bottom:10px; color:#22c55e;}
+  .project-card p {font-size:0.95rem; color:#cbd5e1;}
+
+  /* Modal */
+  .modal {position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:flex; justify-content:center; align-items:center; opacity:0; pointer-events:none; transition:opacity 0.3s;}
+  .modal.active {opacity:1; pointer-events:auto;}
+  .modal-content {background:#0b1220; padding:30px; border-radius:10px; max-width:600px; width:90%; position:relative;}
+  .modal-content h3 {margin-bottom:15px;}
+  .close-modal {position:absolute; top:15px; right:15px; cursor:pointer; font-size:18px; font-weight:700; color:#22c55e;}
+
+  /* Contact */
+  .contact-links a {display:inline-block; margin-right:15px; padding:8px 14px; border:2px solid #22c55e; border-radius:6px; font-weight:500; transition:all 0.3s;}
+  .contact-links a:hover {background:#22c55e; color:#0f1724;}
+
+  footer {text-align:center; font-size:14px; color:#94a3b8; padding:20px 0; border-top:1px solid #1e293b;}
+  @media(max-width:768px){.hero h1{font-size:2.2rem;} .hero p{font-size:1rem;}}
+</style>
 </head>
+
 <body>
-  <header>
-    <h1>Nikhil Ram Jadhav</h1>
+
+<header>
+  <h1>Nikhil Ram Jadhav</h1>
+  <div>
     <nav>
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
     </nav>
-  </header>
-
-  <div class="container">
-    <section id="about" class="section">
-      <h2>About Me</h2>
-      <p>I am a motivated and detail-oriented IT professional with hands-on experience in system support, application troubleshooting, networking, and cloud services. Seeking a challenging role in IT Support or System Administration to leverage my expertise in troubleshooting, network configuration, and customer support to drive organizational success.</p>
-    </section>
-
-    <section id="projects" class="section">
-      <h2>Highlighted Project</h2>
-      <h3>Simulated IT Environment – Hands-On Administration & Troubleshooting</h3>
-      <p>Engaged in a simulated environment replicating real-world IT infrastructure issues to enhance technical proficiency. This included troubleshooting BSOD errors, network connection issues, email configuration (Outlook, Zoho Mail), Microsoft 365 administration, system patching, virtualization, AAA model implementation, Active Directory management, DNS/DHCP configuration, remote administration using AnyDesk/TeamViewer, and GitLab repository management.</p>
-    </section>
-
-    <section id="skills" class="section">
-      <h2>Technical Skills</h2>
-      <div class="skills">
-        <span>Windows Server & Desktop</span>
-        <span>Linux Basics</span>
-        <span>Active Directory</span>
-        <span>Group Policy</span>
-        <span>DNS/DHCP</span>
-        <span>RDS</span>
-        <span>LAN/WAN Networking</span>
-        <span>Firewall Basics</span>
-        <span>AnyDesk</span>
-        <span>TeamViewer</span>
-        <span>RDP</span>
-        <span>Microsoft 365</span>
-        <span>Hyper-V</span>
-        <span>Git</span>
-        <span>GitLab</span>
-      </div>
-      <h2>Soft Skills</h2>
-      <div class="soft-skills">
-        <span>Clear Technical Support</span>
-        <span>Diagnosing Complex Issues</span>
-        <span>Working Under Pressure</span>
-        <span>Task Prioritization</span>
-        <span>Meeting Deadlines</span>
-      </div>
-    </section>
-
-    <section id="contact" class="section">
-      <h2>Contact</h2>
-      <p>📍 Malad (East), Mumbai, Maharashtra - 400097</p>
-      <p>📞 9036375314 / 8766910458</p>
-      <p>📧 <a href="mailto:nja8766@gmail.com">nja8766@gmail.com</a></p>
-      <p><a href="https://github.com/your-username">GitHub</a> | <a href="https://www.linkedin.com/in/your-linkedin">LinkedIn</a></p>
-    </section>
+    <button class="theme-toggle" id="theme-toggle">Light Mode</button>
   </div>
+</header>
 
-  <footer>
-    <p>© 2025 Nikhil Ram Jadhav — Portfolio</p>
-  </footer>
+<!-- Hero -->
+<section class="hero">
+  <h1>Hi, I’m Nikhil Ram Jadhav</h1>
+  <p>IT & DevOps Professional | System Administration | Cloud | Technical Support | Problem Solver</p>
+  <div>
+    <a href="#projects" class="btn">View Projects</a>
+    <a href="#contact" class="btn">Contact Me</a>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I am a motivated and detail-oriented IT professional with hands-on experience in system support, application troubleshooting, networking, and cloud services. I specialize in resolving complex technical issues, configuring networks, and optimizing system performance.</p>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Highlighted Projects</h2>
+    <div class="project-grid">
+      <div class="project-card" data-modal="modal1">
+        <h4>Simulated IT Environment</h4>
+        <p>Hands-on administration & troubleshooting project involving BSOD, networks, email, Microsoft 365, AD, DNS/DHCP, virtualization, GitLab.</p>
+      </div>
+      <div class="project-card" data-modal="modal2">
+        <h4>Network Configuration Lab</h4>
+        <p>Designed and implemented LAN/WAN setups, firewalls, and optimized network traffic for enterprise environments.</p>
+      </div>
+      <div class="project-card" data-modal="modal3">
+        <h4>Cloud & DevOps Simulation</h4>
+        <p>Deployed virtual servers, automated scripts, maintained CI/CD pipelines, and managed cloud infrastructure.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h2>Technical Skills</h2>
+    <div class="skill-bar">
+      <div class="skill-name">Windows Server & Desktop</div>
+      <div class="bar"><div class="fill" data-fill="90%"></div></div>
+    </div>
+    <div class="skill-bar">
+      <div class="skill-name">Linux Basics</div>
+      <div class="bar"><div class="fill" data-fill="80%"></div></div>
+    </div>
+    <div class="skill-bar">
+      <div class="skill-name">Active Directory</div>
+      <div class="bar"><div class="fill" data-fill="85%"></div></div>
+    </div>
+    <h2>Soft Skills</h2>
+    <div class="soft-skills">
+      <span>Technical Communication</span>
+      <span>Problem Solving</span>
+      <span>Deadline Management</span>
+      <span>Prioritization</span>
+      <span>Working Under Pressure</span>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>📍 Malad (East), Mumbai, Maharashtra - 400097</p>
+    <p>📞 9036375314 | 8766910458</p>
+    <p>📧 <a href="mailto:nja8766@gmail.com">nja8766@gmail.com</a></p>
+    <div class="contact-links">
+      <a href="https://github.com/your-username" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/your-linkedin" target="_blank">LinkedIn</a>
+    </div>
+  </section>
+
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 Nikhil Ram Jadhav — Portfolio</p>
+</footer>
+
+<!-- Project Modals -->
+<div class="modal" id="modal1">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h3>Simulated IT Environment</h3>
+    <p>Complete hands-on IT administration and troubleshooting project including Windows & Linux systems, Active Directory, DNS/DHCP, virtualization, Microsoft 365, network setup, and GitLab repository management.</p>
+  </div>
+</div>
+<div class="modal" id="modal2">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h3>Network Configuration Lab</h3>
+    <p>Designed LAN/WAN networks, firewall configuration, optimized traffic, simulated enterprise environment troubleshooting.</p>
+  </div>
+</div>
+<div class="modal" id="modal3">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h3>Cloud & DevOps Simulation</h3>
+    <p>Deployed cloud servers, automated scripts, managed CI/CD pipelines, worked with GitLab, and virtualized infrastructure management.</p>
+  </div>
+</div>
+
+<script>
+  // Skill bar animation on scroll
+  const skillFills = document.querySelectorAll('.fill');
+  window.addEventListener('scroll', () => {
+    skillFills.forEach(fill => {
+      const rect = fill.getBoundingClientRect();
+      if(rect.top < window.innerHeight - 50){
+        fill.style.width = fill.dataset.fill;
+      }
+    });
+  });
+
+  // Project Modals
+  const cards = document.querySelectorAll('.project-card');
+  const modals = document.querySelectorAll('.modal');
+  const closes = document.querySelectorAll('.close-modal');
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      document.getElementById(card.dataset.modal).classList.add('active');
+    });
+  });
+  closes.forEach(close => {
+    close.addEventListener('click', () => {
+      close.parentElement.parentElement.classList.remove('active');
+    });
+  });
+  window.addEventListener('click', e => {
+    modals.forEach(modal => {if(e.target==modal){modal.classList.remove('active');}});
+  });
+
+  // Dark/Light Mode Toggle
+  const toggleBtn = document.getElementById('theme-toggle');
+  toggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    toggleBtn.textContent = document.body.classList.contains('light-mode') ? 'Dark Mode' : 'Light Mode';
+  });
+</script>
+
 </body>
 </html>
